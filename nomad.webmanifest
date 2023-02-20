@@ -1,0 +1,13 @@
+{
+  "description": "A web game in which you explore a procedurally-generated zone, stay for a short period while you drain it of resources, and move on to the next.",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/assets/nomad_favicon.png",
+      "sizes": "any"
+    }
+  ],
+  "name": "Nomad",
+  "scope": "/projects/nomad/app",
+  "start_url": "/projects/nomad/app"
+}

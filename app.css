@@ -32,6 +32,10 @@ main h1 {
   height: 8rem;
   transform: translate(0, 15%);
 }
+#game canvas {
+  width: 20rem;
+  height: 20rem;
+}
 main .button-row {
   margin: 0;
   margin-top: 2rem;

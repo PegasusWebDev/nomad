@@ -35,6 +35,7 @@ main h1 {
 #game canvas {
   width: 20rem;
   height: 20rem;
+  image-rendering: pixelated;
 }
 main .button-row {
   margin: 0;

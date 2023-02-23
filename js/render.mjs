@@ -1,7 +1,7 @@
 export default class Renderer {
 	constructor(c){
 		this.c = c;
-		this.ctx = c.getContext();
+		this.ctx = c.getContext('2d');
 		this.ctx.imageSmoothingEnabled = false;
 	}
 	draw(url, x, y){

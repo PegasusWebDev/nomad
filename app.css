@@ -28,20 +28,6 @@ main h1 {
   text-shadow: 1.25px .5px .75px rgba(0,0,0,0.5);
   user-select: none;
 }
-main p {
-  margin: 0;
-  margin-top: 2rem;
-  font-size: 1.5rem;
-  min-width: 50%;
-  display:inline-block;
-  background-color: white;
-  color: black;
-  border-radius: 1rem;
-  font-family: 'Monoton', monospace;
-  font-weight: normal;
-  text-shadow: 1.25px .5px .75px rgba(0,0,0,0.5);
-  user-select: none;
-}
 #menu h1 img {
   width: 8rem;
   height: 8rem;

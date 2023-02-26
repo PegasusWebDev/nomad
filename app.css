@@ -34,7 +34,7 @@ main h1 {
   transform: translate(0, 15%);
 }
 #game canvas {
-  width: 10vh;
+  width: 50vh;
   height: 50vh;
   image-rendering: pixelated;
 }

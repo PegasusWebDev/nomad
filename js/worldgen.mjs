@@ -4,7 +4,7 @@ function perlinPlane(x, y, w, h, s){
 	for(let i = 0; i < w; i++){
 		let a = [];
 		for(let j = 0; j < h; j++){
-			a.push(perlin.get(x + s*i, y + s*j) * 256);
+			a.push(perlin.get(x + s*i, y + s*j));
 		}
 		r.push(a);
 	}
@@ -13,7 +13,7 @@ function perlinPlane(x, y, w, h, s){
 export default class Level {
 	constructor(){
 		perlin.seed();
-		this.map = perlinPlane(0, 0, 109, 109, 0.005)
+		this.map = perlinPlane(0, 0, 16, 16, 0.05)
 	}
 	render(c){
 		let i = c.createImageData(this.map.length,this.map[0].length), d = i.data;

@@ -12,7 +12,7 @@ function perlinPlane(x, y, w, h, s){
 }
 export default class Level {
 	constructor(){
-		noise.seed(Math.random());
+		perlin.seed();
 		this.map = perlinPlane(0, 0, 109, 109, 1)
 	}
 	render(c){

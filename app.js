@@ -1,5 +1,6 @@
 import screen from './js/screens.mjs'
 import Renderer from './js/render.mjs'
+import Level from './js/worldgen.mjs'
 
 navigator.serviceWorker.register('/offline.js', {scope: '.'});
 
@@ -10,6 +11,7 @@ $(()=>{
 		let x = Math.floor((e.offsetX/$('canvas').width())*105)
 		let y = Math.floor((e.offsetY/$('canvas').height())*105)
 		r.draw('./assets/game/blank_tile.png', x, y);
+		new Level();
 	})
 	$('#menu-play').click(()=>{
 		screen.switch('game')

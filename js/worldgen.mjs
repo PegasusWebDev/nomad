@@ -4,7 +4,7 @@ function perlinPlane(x, y, w, h, s){
 	for(let i = 0; i < w; i++){
 		let a = [];
 		for(let j = 0; j < h; j++){
-			a.push(noise.perlin2(x + s*i, y + s*j));
+			a.push(noise.perlin2(x + s*i, y + s*j) * 256);
 		}
 		r.push(a);
 	}
@@ -12,6 +12,7 @@ function perlinPlane(x, y, w, h, s){
 }
 export default class Level {
 	constructor(){
-		console.log(perlinPlane(0, 0, 16, 16, 10));
+		noise.seed(Math.random());
+		console.log(perlinPlane(0, 0, 16, 16, 0.001));
 	}
 }

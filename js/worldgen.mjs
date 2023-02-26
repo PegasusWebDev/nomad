@@ -1,10 +1,10 @@
-import "./lib/perlin.js" //exports to globalThis.noise
+import perlin from "./lib/perlin.js"
 function perlinPlane(x, y, w, h, s){
 	let r = [];
 	for(let i = 0; i < w; i++){
 		let a = [];
 		for(let j = 0; j < h; j++){
-			a.push(noise.perlin2(x + s*i, y + s*j) * 256);
+			a.push(perlin(x + s*i, y + s*j) * 256);
 		}
 		r.push(a);
 	}
@@ -13,10 +13,10 @@ function perlinPlane(x, y, w, h, s){
 export default class Level {
 	constructor(){
 		noise.seed(Math.random());
-		this.map = perlinPlane(0, 0, 16, 16, 0.001)
+		this.map = perlinPlane(0, 0, 109, 109, 1)
 	}
 	render(c){
-		let i = c.createImageData(16,16), d = i.data;
+		let i = c.createImageData(this.map.length,this.map[0].length), d = i.data;
 		for(let x = 0; x < this.map.length; x++){
 			for(let y = 0; y < this.map[x].length; y++){
 				let v = Math.abs(this.map[x][y] * 256);

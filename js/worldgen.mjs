@@ -4,7 +4,7 @@ function perlinPlane(x, y, w, h, s){
 	for(let i = 0; i < w; i++){
 		let a = [];
 		for(let j = 0; j < h; j++){
-			a.push(perlin(x + s*i, y + s*j) * 256);
+			a.push(perlin.get(x + s*i, y + s*j) * 256);
 		}
 		r.push(a);
 	}

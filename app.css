@@ -34,8 +34,8 @@ main h1 {
   transform: translate(0, 15%);
 }
 #game canvas {
-  width: 20rem;
-  height: 20rem;
+  width: 10vh;
+  height: 50vh;
   image-rendering: pixelated;
 }
 main .button-row {

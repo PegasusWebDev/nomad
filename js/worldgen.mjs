@@ -13,7 +13,7 @@ function perlinPlane(x, y, w, h, s){
 export default class Level {
 	constructor(){
 		perlin.seed();
-		this.map = perlinPlane(0, 0, 109, 109, 1)
+		this.map = perlinPlane(0, 0, 109, 109, 0.005)
 	}
 	render(c){
 		let i = c.createImageData(this.map.length,this.map[0].length), d = i.data;

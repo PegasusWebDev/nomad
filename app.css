@@ -82,7 +82,7 @@ main .button-row button {
 }
 button#travel {
   display: block;
-  margin: 1rem;
+  margin: 1rem auto;
   background-color: #00FFFF;
   color: white;
   border-radius: 1rem;

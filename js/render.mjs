@@ -4,9 +4,16 @@ export default class Renderer {
 		this.ctx = c.getContext('2d');
 		this.ctx.imageSmoothingEnabled = false;
 	}
-	draw(url, x, y){
-		let i = new Image();
-		i.src = url;
-		this.ctx.drawImage(i, x, y);
+	draw(s, x, y){
+		if(typeof s == 'string'){
+			let i = new Image();
+			i.src = s;
+			this.ctx.drawImage(i, x, y);
+		} else if(s instanceof ImageData){
+			let i = createImageBitmap(s);
+			this.ctx.drawImage(i, x, y);
+		} else {
+			throw "Invalid type passed: accepts URL string or ImageData"
+		}
 	}
 }

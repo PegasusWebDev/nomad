@@ -10,21 +10,52 @@ function perlinPlane(x, y, w, h, s){
 	}
 	return r;
 }
+function makeTile(c, l){
+	let i = c.createImageData(10, 10), d = i.data, v = (l+1)*128;
+	let shape = [
+		[0,1,0,0,0,0,1,0,1,1],
+		[1,1,0,0,1,1,1,1,0,1],
+		[0,1,1,1,1,1,0,0,1,0],
+		[0,0,1,1,1,1,1,1,1,0],
+		[0,1,1,1,1,1,1,1,0,0],
+		[1,1,0,1,1,1,1,0,0,1],
+		[0,0,1,1,1,1,1,1,1,0],
+		[1,0,1,1,1,1,1,1,1,0],
+		[1,1,1,1,0,0,0,1,0,0],
+		[1,0,0,0,0,0,1,1,1,1]
+	]
+	for(let x = 0; x < 10; x++){
+		for(let y = 0; y < 10; y++){
+			let c = (x + y * 10) * 4;
+			if(shape[y][x]){
+				d[c] = d[c+1] = d[c+2] = v;
+				d[c+3] = 255;
+			} else {
+				d[c] = d[c+1] = d[c+2] = d[c+3] = 0;
+			}
+		}
+	}
+	return i;
+}
 export default class Level {
 	constructor(){
 		perlin.seed();
 		this.map = perlinPlane(0, 0, 16, 16, 0.05)
 	}
-	render(c){
-		let i = c.createImageData(this.map.length,this.map[0].length), d = i.data;
+	render(r){
+		let drawlist = [];
 		for(let x = 0; x < this.map.length; x++){
 			for(let y = 0; y < this.map[x].length; y++){
-				let v = (this.map[x][y] + 1)*128;
-				let c = (x + y * this.map[x].length) * 4;
-				d[c] = d[c+1] = d[c+2] = v;
-				d[c+3] = 255;
+				drawlist.push({
+					data: makeTile(r.ctx, this.map[x][y]),
+					x: x*7 - 3,
+					y: y*7 - 3
+				});
 			}
 		}
-		c.putImageData(i, 0, 0);
+		drawlist = drawlist.sort((a, b) => 0.5 - Math.random()); //more random transitions
+		for(let i in drawlist){
+			r.draw(drawlist[i].data, drawlist[i].x, drawlist[i].y);
+		}
 	}
 }

@@ -1,5 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
 
+@keyframes border {
+  0% {
+    border: 2px solid red;
+  }
+  20% {
+    border: 2px solid orange;
+  }
+  40% {
+    border: 2px solid yellow;
+  }
+  60% {
+    border: 2px solid green;
+  }
+  80% {
+    border: 2px solid blue;
+  }
+  100% {
+    border: 2px solid violet;
+  }
+}
+
 body {
   font-family: monospace;
   margin: 0;
@@ -58,4 +79,20 @@ main .button-row button {
   min-height: 100%;
   width: fit-content;
   padding: 1rem;
+}
+button#travel {
+  display: block;
+  margin: 1rem;
+  background-color: #00FFFF;
+  color: white;
+  border-radius: 1rem;
+  user-select: none;
+  width: fit-content;
+  padding: 1rem;
+  transition: transform 2s, background-color 2s;
+}
+button#travel:hover {
+  transform: scale(1.1, 1.1);
+  background-color: #05696B;
+  animation: 6s linear 0s infinite border;
 }

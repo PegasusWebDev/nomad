@@ -38,9 +38,11 @@ function makeTile(c, l){
 	return i;
 }
 export default class Level {
-	constructor(){
-		perlin.seed();
+	constructor(px, py){
+		let x = px + (Math.random()-0.5), y = py + (Math.random()-0.5); //settle close to your previous position, you can't travel the world in a day you know
 		this.map = perlinPlane(0, 0, 16, 16, 0.05)
+		this.x = x;
+		this.y = y;
 	}
 	render(r){
 		let drawlist = [];

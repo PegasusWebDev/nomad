@@ -11,7 +11,7 @@ $(()=>{
 		let x = Math.floor((e.offsetX/$('canvas').width())*105)
 		let y = Math.floor((e.offsetY/$('canvas').height())*105)
 		//r.draw('./assets/game/blank_tile.png', x, y);
-		new Level().render($('canvas').get(0).getContext('2d'));
+		new Level().render(r);
 	})
 	$('#menu-play').click(()=>{
 		screen.switch('game')

@@ -10,8 +10,9 @@ export default class Renderer {
 			i.src = s;
 			this.ctx.drawImage(i, x, y);
 		} else if(s instanceof ImageData){
-			let i = createImageBitmap(s);
-			this.ctx.drawImage(i, x, y);
+			createImageBitmap(s).then((i)=>{
+				this.ctx.drawImage(i, x, y);
+			})
 		} else {
 			throw "Invalid type passed: accepts URL string or ImageData"
 		}

@@ -41,7 +41,7 @@ export default class Level {
 	constructor(px, py){
 		debugger;
 		let x = (px??0) + (Math.random()-0.5), y = (py??0) + (Math.random()-0.5); //settle close to your previous position, you can't travel the world in a day you know
-		this.map = perlinPlane(x, y, 16, 16, 0.05)
+		this.map = perlinPlane(0, 0, 16, 16, 0.05)
 		this.x = x;
 		this.y = y;
 	}

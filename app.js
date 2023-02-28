@@ -7,11 +7,11 @@ navigator.serviceWorker.register('/offline.js', {scope: '.'});
 $(()=>{
 	screen.switch('menu');
 	const r = new Renderer($('canvas').get(0));
+	let level = new Level().render(r);
 	$('#travel').click((e)=>{
 		let x = Math.floor((e.offsetX/$('canvas').width())*105)
 		let y = Math.floor((e.offsetY/$('canvas').height())*105)
-		//r.draw('./assets/game/blank_tile.png', x, y);
-		new Level().render(r);
+		level = new Level(level.x, level.y).render(r);
 	})
 	$('#menu-play').click(()=>{
 		screen.switch('game')

@@ -37,13 +37,23 @@ function makeTile(c, l){
 	}
 	return i;
 }
+function travelVector(pvx, pvy){
+	//First, get the signs of PVX and PVY.
+	let sx = pvx<0?-1:1, sy = pvy<0?-1:1 //and yes, i know 0 isn't positive, but that would require more code
+	//You don't want to go backwards: change 1 or none of the signs
+	if(Math.random()<0.5) sx*=-1; //and yes, i know this favors reversing x movement
+	else if(Math.random()<0.5) sy*=-1;
+	return [Math.random()*sx, Math.random()*sy]
+}
 export default class Level {
-	constructor(px, py){
-		debugger;
-		let x = (px??0) + (Math.random()-0.5), y = (py??0) + (Math.random()-0.5); //settle close to your previous position, you can't travel the world in a day you know
+	constructor(px, py, pvx, pvy){
+		let [vx, vy] = travelVector(pvx??0, pvy??0)
+		let x = (px??0) + vx, y = (py??0) + vy; //settle close to your previous position, you can't travel the world in a day you know
 		this.map = perlinPlane(x, y, 16, 16, 0.05)
 		this.x = x;
 		this.y = y;
+		this.vx = vx;
+		this.vy = vy;
 	}
 	render(r){
 		let drawlist = [];

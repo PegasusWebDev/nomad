@@ -12,7 +12,7 @@ $(()=>{
 	$('#travel').click((e)=>{
 		let x = Math.floor((e.offsetX/$('canvas').width())*105)
 		let y = Math.floor((e.offsetY/$('canvas').height())*105)
-		level = new Level(level.x, level.y);
+		level = new Level(level.x, level.y, level.vx, level.vy);
 		level.render(r);
 	})
 	$('#menu-play').click(()=>{

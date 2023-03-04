@@ -8,7 +8,9 @@ export default class Renderer {
 		if(typeof s == 'string'){
 			let i = new Image();
 			i.src = s;
-			this.ctx.drawImage(i, x, y);
+			i.onload = ()=>{
+				this.ctx.drawImage(i, x, y);
+			}
 		} else if(s instanceof ImageData){
 			createImageBitmap(s).then((i)=>{
 				this.ctx.drawImage(i, x, y);

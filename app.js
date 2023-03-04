@@ -20,6 +20,5 @@ $(()=>{
 	})
 	$('#menu-play').click(()=>{
 		screen.switch('game')
-		r.draw('./assets/game/blank_tile.png', 10, 10);
 	})
 });

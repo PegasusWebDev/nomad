@@ -25,12 +25,12 @@ function travelVector(pvx, pvy){
 	//You don't want to go backwards: change 1 or none of the signs
 	if(Math.random()<0.5) sx*=-1; //and yes, i know this favors reversing x movement
 	else if(Math.random()<0.5) sy*=-1;
-	return [Math.random()*sx, Math.random()*sy]
+	return [Math.random()*sx*10, Math.random()*sy*10]
 }
 export default class Level {
 	constructor(px, py, pvx, pvy){
 		let [vx, vy] = travelVector(pvx??0, pvy??0)
-		let x = (px??0) + vx, y = (py??0) + vy; //settle close to your previous position, you can't travel the world in a day you know
+		let x = (px??0) + vx, y = (py??0) + vy;
 		this.map = perlinPlane(x, y, 16, 16, 0.05)
 		this.x = x;
 		this.y = y;

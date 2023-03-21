@@ -17,32 +17,7 @@ function makeTile(c, l){
 	else if(l<0.1) return './assets/game/scarce_grass.png';
 	else if(l<0.3) return './assets/game/grass.png';
 	else if(l<0.5) return './assets/game/rocks.png';
-	console.log(l);
-	let i = c.createImageData(10, 10), d = i.data, v = (l+1)*128;
-	let shape = [
-		[0,1,0,0,0,0,1,0,1,1],
-		[1,1,0,0,1,1,1,1,0,1],
-		[0,1,1,1,1,1,0,0,1,0],
-		[0,0,1,1,1,1,1,1,1,0],
-		[0,1,1,1,1,1,1,1,0,0],
-		[1,1,0,1,1,1,1,0,0,1],
-		[0,0,1,1,1,1,1,1,1,0],
-		[1,0,1,1,1,1,1,1,1,0],
-		[1,1,1,1,0,0,0,1,0,0],
-		[1,0,0,0,0,0,1,1,1,1]
-	]
-	for(let x = 0; x < 10; x++){
-		for(let y = 0; y < 10; y++){
-			let c = (x + y * 10) * 4;
-			if(shape[y][x]){
-				d[c] = d[c+1] = d[c+2] = v;
-				d[c+3] = 255;
-			} else {
-				d[c] = d[c+1] = d[c+2] = d[c+3] = 0;
-			}
-		}
-	}
-	return i;
+	else return './assets/game/peaks.png';
 }
 function travelVector(pvx, pvy){
 	//First, get the signs of PVX and PVY.

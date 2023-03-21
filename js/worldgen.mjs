@@ -16,6 +16,7 @@ function makeTile(c, l){
 	else if(l<-0.1) return './assets/game/sand.png';
 	else if(l<0.1) return './assets/game/scarce_grass.png';
 	else if(l<0.3) return './assets/game/grass.png';
+	else if(l<0.5) return './assets/game/rocks.png';
 	console.log(l);
 	let i = c.createImageData(10, 10), d = i.data, v = (l+1)*128;
 	let shape = [

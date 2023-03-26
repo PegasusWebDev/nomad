@@ -12,8 +12,6 @@ $(()=>{
 	$('#travel').click((e)=>{
 		screen.switch('game', 1000);
 		setTimeout(()=>{
-			let x = Math.floor((e.offsetX/$('canvas').width())*105)
-			let y = Math.floor((e.offsetY/$('canvas').height())*105)
 			level = new Level(level.x, level.y, level.vx, level.vy);
 			level.render(r);
 		}, 1000);

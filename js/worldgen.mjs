@@ -10,6 +10,10 @@ function perlinPlane(x, y, w, h, s){
 	}
 	return r;
 }
+function getBiome(plane){
+	let v = plane.reduce((a, e)=>a+e.reduce((a,e)=>a+e,0), 0);
+	console.log(v);
+}
 function makeTile(c, l){
 	if(l<-0.4) return './assets/game/deep_water.png';
 	else if(l<-0.3) return './assets/game/water.png';
@@ -36,6 +40,7 @@ export default class Level {
 		this.y = y;
 		this.vx = vx;
 		this.vy = vy;
+		getBiome(this.map);
 	}
 	render(r){
 		let drawlist = [];

@@ -1,6 +1,6 @@
 export default {
     path: './assets/game/',
-    tilesize: 5,
+    tilesize: 7,
     tiles: [
         { name:"deep_water", symmetry:"X" },
         { name:"grass", symmetry:"X" },

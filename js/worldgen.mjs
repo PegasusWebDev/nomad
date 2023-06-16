@@ -3,7 +3,7 @@ import Renderer from './render.mjs'
 
 export default class Level {
 	constructor(){
-		console.log(Renderer.toImageData('../assets/game/blank_tile.png'));
+		console.log(Renderer.toImageData('assets/game/blank_tile.png'));
 	}
 	render(r){
 		

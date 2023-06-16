@@ -1,61 +1,8 @@
-import perlin from "./lib/perlin.js"
-function perlinPlane(x, y, w, h, s){
-	let r = [];
-	for(let i = 0; i < w; i++){
-		let a = [];
-		for(let j = 0; j < h; j++){
-			a.push(perlin.get(x + s*i, y + s*j));
-		}
-		r.push(a);
-	}
-	return r;
-}
-function getBiome(plane){
-	let v = plane.reduce((a, e)=>a+e.reduce((a,e)=>a+e,0), 0);
-	console.log(v);
-}
-function makeTile(c, l){
-	if(l<-0.4) return './assets/game/deep_water.png';
-	else if(l<-0.3) return './assets/game/water.png';
-	else if(l<-0.1) return './assets/game/sand.png';
-	else if(l<0.1) return './assets/game/scarce_grass.png';
-	else if(l<0.3) return './assets/game/grass.png';
-	else if(l<0.5) return './assets/game/rocks.png';
-	else return './assets/game/peaks.png';
-}
-function travelVector(pvx, pvy){
-	//First, get the signs of PVX and PVY.
-	let sx = pvx<0?-1:1, sy = pvy<0?-1:1 //and yes, i know 0 isn't positive, but that would require more code
-	//You don't want to go backwards: change 1 or none of the signs
-	if(Math.random()<0.5) sx*=-1; //and yes, i know this favors reversing x movement
-	else if(Math.random()<0.5) sy*=-1;
-	return [Math.random()*sx*10, Math.random()*sy*10]
-}
 export default class Level {
-	constructor(px, py, pvx, pvy){
-		let [vx, vy] = travelVector(pvx??0, pvy??0)
-		let x = (px??0) + vx, y = (py??0) + vy;
-		this.map = perlinPlane(x, y, 16, 16, 0.05)
-		this.x = x;
-		this.y = y;
-		this.vx = vx;
-		this.vy = vy;
-		getBiome(this.map);
+	constructor(){
+		
 	}
 	render(r){
-		let drawlist = [];
-		for(let x = 0; x < this.map.length; x++){
-			for(let y = 0; y < this.map[x].length; y++){
-				drawlist.push({
-					data: makeTile(r.ctx, this.map[x][y]),
-					x: x*7 - 3,
-					y: y*7 - 3
-				});
-			}
-		}
-		drawlist = drawlist.sort((a, b) => 0.5 - Math.random()); //more random transitions
-		for(let i in drawlist){
-			r.draw(drawlist[i].data, drawlist[i].x, drawlist[i].y);
-		}
+		
 	}
 }

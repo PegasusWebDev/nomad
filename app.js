@@ -12,7 +12,7 @@ $(()=>{
 	$('#travel').click((e)=>{
 		screen.switch('game', 1000);
 		setTimeout(()=>{
-			level = new Level(level.x, level.y, level.vx, level.vy);
+			level = new Level();
 			level.render(r);
 		}, 1000);
 	})

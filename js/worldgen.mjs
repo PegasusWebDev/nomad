@@ -64,9 +64,9 @@ export default class Level {
 			
 				if (finished) {
 					console.log('Success');
-					let data = r.ctx.createImageData(115, 115);
+					let data = r.ctx.createImageData(112, 112);
 					model.graphics(data.data);
-					r.ctx.putImageData(data, -3, -3);
+					r.ctx.putImageData(data, 0, 0);
 				} else {
 					console.log('The generation ended in a contradiction');
 				}

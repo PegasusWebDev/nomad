@@ -53,8 +53,8 @@ export default class Level {
 				throw err;
 			}
 			
-			const destWidth = 15;
-			const destHeight = 15;
+			const destWidth = 16;
+			const destHeight = 16;
 			
 			//try catch to prevent the eventual errors from being silenced by the promise...
 			

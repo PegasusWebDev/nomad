@@ -11,7 +11,7 @@ export default {
         { name:"water", symmetry:"X" }
     ],
     neighbors: [
-        { left:"deep_water", right:"river 1" },
+        { left:"deep_water", right:"water" },
         { left:"water", right:"sand" },
         { left: "sand", right: "scarce_grass" },
         { left: "scarce_grass", right: "grass" },

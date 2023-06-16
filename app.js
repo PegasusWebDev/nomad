@@ -8,12 +8,10 @@ $(()=>{
 	screen.switch('menu');
 	const r = new Renderer($('canvas').get(0));
 	let level = new Level();
-	level.render(r);
 	$('#travel').click((e)=>{
 		screen.switch('game', 1000);
 		setTimeout(()=>{
 			level = new Level();
-			level.render(r);
 		}, 1000);
 	})
 	$('#menu-play').click(()=>{

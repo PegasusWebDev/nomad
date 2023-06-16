@@ -64,7 +64,7 @@ export default class Level {
 			
 				if (finished) {
 					console.log('Success');
-					let data = r.ctx.createImageData(109, 109);
+					let data = r.ctx.createImageData(105, 105);
 					model.graphics(data.data);
 					r.ctx.putImageData(data, 0, 0);
 				} else {

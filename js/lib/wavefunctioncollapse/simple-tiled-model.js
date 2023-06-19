@@ -179,7 +179,7 @@ const SimpleTiledModel = function SimpleTiledModel (data, subsetName, width, hei
       }
     }
 
-    for (let t = 0; t < cardinality; t++) {
+    for (let t = 0; t < rotatyvariablething; t++) {
       tempStationary.push(currentTile.weight || 1);
     }
 

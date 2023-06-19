@@ -24,16 +24,11 @@ function addBitmapDataToStructure (structure, callback) {
 
   structure.tiles.map(function (tile) {
     if (unique) {
-      if (tile.symmetry === 'X') {
-        tile.bitmap = new Array(1);
-        promises.push(loadTileBitmapData(path, tile, 0));
-      } else {
-        tile.bitmap = new Array(4);
-        promises.push(loadTileBitmapData(path, tile, 0));
-        promises.push(loadTileBitmapData(path, tile, 1));
-        promises.push(loadTileBitmapData(path, tile, 2));
-        promises.push(loadTileBitmapData(path, tile, 3));
-      }
+      tile.bitmap = new Array(4);
+      promises.push(loadTileBitmapData(path, tile, 0));
+      promises.push(loadTileBitmapData(path, tile, 1));
+      promises.push(loadTileBitmapData(path, tile, 2));
+      promises.push(loadTileBitmapData(path, tile, 3));
     } else {
       promises.push(loadTileBitmapData(path, tile, null));
     }
@@ -46,8 +41,39 @@ function addBitmapDataToStructure (structure, callback) {
   });
 }
 
+function expandRotations (structure) {
+  let newNeighbors = [];
+  for(let i in structure.neighbors){
+    if(structure.neighbors[i].anyrot){
+      let n = structure.neighbors[i];
+      newNeighbors.push(n);
+      newNeighbors.push({left: n.left + " 1", right: n.right});
+      newNeighbors.push({left: n.left + " 2", right: n.right});
+      newNeighbors.push({left: n.left + " 3", right: n.right});
+      newNeighbors.push({left: n.left, right: n.right + " 1"});
+      newNeighbors.push({left: n.left, right: n.right + " 2"});
+      newNeighbors.push({left: n.left, right: n.right + " 3"});
+      newNeighbors.push({left: n.left + " 1", right: n.right + " 1"});
+      newNeighbors.push({left: n.left + " 1", right: n.right + " 2"});
+      newNeighbors.push({left: n.left + " 1", right: n.right + " 3"});
+      newNeighbors.push({left: n.left + " 2", right: n.right + " 1"});
+      newNeighbors.push({left: n.left + " 2", right: n.right + " 2"});
+      newNeighbors.push({left: n.left + " 2", right: n.right + " 3"});
+      newNeighbors.push({left: n.left + " 3", right: n.right + " 1"});
+      newNeighbors.push({left: n.left + " 3", right: n.right + " 2"});
+      newNeighbors.push({left: n.left + " 3", right: n.right + " 3"});
+    } else {
+      newNeighbors.push(structure.neighbors[i]);
+    }
+    structure.neighbors = newNeighbors;
+    return structure;
+  }
+}
+
 export default class Level {
 	constructor(r){
+    definition = expandRotations(definition);
+    console.log(definition);
 		addBitmapDataToStructure(definition, function (err, definition) {
 			if (err) {
 				throw err;
@@ -55,8 +81,6 @@ export default class Level {
 			
 			const destWidth = 16;
 			const destHeight = 16;
-			
-			//try catch to prevent the eventual errors from being silenced by the promise...
 			
 			try {
 				const model = new WFC.SimpleTiledModel(definition, null, destWidth, destHeight, false);

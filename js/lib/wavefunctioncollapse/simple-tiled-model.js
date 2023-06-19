@@ -1,35 +1,35 @@
 import Model from './model.js'
 
-const tile = function tile (f) {
-  const result = new Array(this.tilesize * this.tilesize);
+const tile = function tile (f, t) {
+  const result = new Array(t.tilesize * t.tilesize);
 
-  for (let y = 0; y < this.tilesize; y++) {
-    for (let x = 0; x < this.tilesize; x++) {
-      result[x + y * this.tilesize] = f(x, y);
+  for (let y = 0; y < t.tilesize; y++) {
+    for (let x = 0; x < t.tilesize; x++) {
+      result[x + y * t.tilesize] = f(x, y);
     }
   }
 
   return result;
 };
 
-const rotate = function rotate (array) {
+const rotate = function rotate (array, t) {
   return tile(function (x, y) {
-    return array[this.tilesize - 1 - y + x * this.tilesize];
-  });
+    return array[t.tilesize - 1 - y + x * t.tilesize];
+  }, t);
 };
 
-function randomRotate(array) {
+function randomRotate(array, t) {
   let a = array.slice();
   for(let i = 0; i<Math.floor(Math.random()*4)+1; i++){
-    a = rotate(a);
+    a = rotate(a, t);
   }
   return a;
 }
 
-const reflect = function reflect(array) {
+const reflect = function reflect(array, t) {
   return tile(function (x, y) {
-    return array[this.tilesize - 1 - x + y * this.tilesize];
-  });
+    return array[t.tilesize - 1 - x + y * t.tilesize];
+  }, t);
 };
 
 /**
@@ -162,7 +162,7 @@ const SimpleTiledModel = function SimpleTiledModel (data, subsetName, width, hei
             bitmap[(tilesize * y + x) * 4 + 2],
             bitmap[(tilesize * y + x) * 4 + 3]
           ];
-        }));
+        }, this));
       }
     } else {
       bitmap = currentTile.bitmap;
@@ -173,7 +173,7 @@ const SimpleTiledModel = function SimpleTiledModel (data, subsetName, width, hei
           bitmap[(tilesize * y + x) * 4 + 2],
           bitmap[(tilesize * y + x) * 4 + 3]
         ];
-      }));
+      }, this));
 
       for (let t = 1; t < cardinality; t++) {
         this.tiles.push(t < 4 ? rotate(this.tiles[this.T + t - 1]) : reflect(this.tiles[this.T + t - 4]));

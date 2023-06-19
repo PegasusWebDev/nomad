@@ -174,9 +174,11 @@ const SimpleTiledModel = function SimpleTiledModel (data, subsetName, width, hei
           bitmap[(tilesize * y + x) * 4 + 3]
         ];
       }, this));
+      this.tiles[this.tiles.length-1].randomRotate = currentTile.randomRotate;
 
       for (let t = 1; t < cardinality; t++) {
         this.tiles.push(t < 4 ? rotate(this.tiles[this.T + t - 1]) : reflect(this.tiles[this.T + t - 4]));
+        this.tiles[this.tiles.length-1].randomRotate = currentTile.randomRotate;
       }
     }
 
@@ -304,7 +306,7 @@ SimpleTiledModel.prototype.graphics = function (array, defaultColor) {
 SimpleTiledModel.prototype.graphicsComplete = function (array) {
   for (let x = 0; x < this.FMX; x++) {
     for (let y = 0; y < this.FMY; y++) {
-      const tile = randomRotate(this.tiles[this.observed[x + y * this.FMX]], this);
+      const tile = this.tiles[this.observed[x + y * this.FMX]].randomRotate?randomRotate(this.tiles[this.observed[x + y * this.FMX]], this):this.tiles[this.observed[x + y * this.FMX]];
 
       for (let yt = 0; yt < this.tilesize; yt++) {
         for (let xt = 0; xt < this.tilesize; xt++) {

@@ -3,11 +3,11 @@ export default {
     tilesize: 7,
     tiles: [
         { name:"deep_water", symmetry:"X" },
-        { name:"grass", symmetry:"X" },
-        { name:"peaks", symmetry:"X" },
-        { name:"rocks", symmetry:"X" },
-        { name:"sand", symmetry:"X" },
-        { name:"scarce_grass", symmetry:"X" },
+        { name:"grass", symmetry:"X", randomRotate:true },
+        { name:"peaks", symmetry:"X", randomRotate:true },
+        { name:"rocks", symmetry:"X", randomRotate:true },
+        { name:"sand", symmetry:"X", randomRotate:true },
+        { name:"scarce_grass", symmetry:"X", randomRotate:true },
         { name:"water", symmetry:"X" }
     ],
     neighbors: [

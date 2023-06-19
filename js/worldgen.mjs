@@ -73,6 +73,8 @@ function expandRotations (structure) {
 export default class Level {
 	constructor(r){
     //let d = expandRotations(definition);
+    console.log(definition);
+    let d = definition;
     console.log(d);
 		addBitmapDataToStructure(d, function (err, d) {
 			if (err) {

@@ -60,6 +60,7 @@ const SimpleTiledModel = function SimpleTiledModel (data, subsetName, width, hei
   let funcA;
   let funcB;
   let cardinality;
+  let rotatyvariablething;
 
   for (let i = 0; i < data.tiles.length; i++) {
     const currentTile = data.tiles[i];
@@ -71,6 +72,7 @@ const SimpleTiledModel = function SimpleTiledModel (data, subsetName, width, hei
     switch (currentTile.symmetry) {
       case 'L':
         cardinality = 4;
+        rotatyvariablething = 4;
         funcA = function (i) {
           return (i + 1) % 4;
         };
@@ -80,6 +82,7 @@ const SimpleTiledModel = function SimpleTiledModel (data, subsetName, width, hei
         break;
       case 'T':
         cardinality = 4;
+        rotatyvariablething = 4;
         funcA = function (i) {
           return (i + 1) % 4;
         };
@@ -89,6 +92,7 @@ const SimpleTiledModel = function SimpleTiledModel (data, subsetName, width, hei
         break;
       case 'I':
         cardinality = 2;
+        rotatyvariablething = 2;
         funcA = function (i) {
           return 1 - i;
         };
@@ -98,6 +102,7 @@ const SimpleTiledModel = function SimpleTiledModel (data, subsetName, width, hei
         break;
       case '\\':
         cardinality = 2;
+        rotatyvariablething = 2;
         funcA = function (i) {
           return 1 - i;
         };
@@ -107,6 +112,7 @@ const SimpleTiledModel = function SimpleTiledModel (data, subsetName, width, hei
         break;
       case 'F':
         cardinality = 8;
+        rotatyvariablething = 8;
         funcA = function (i) {
           return i < 4 ? (i + 1) % 4 : 4 + (i - 1) % 4;
         };
@@ -116,6 +122,7 @@ const SimpleTiledModel = function SimpleTiledModel (data, subsetName, width, hei
         break;
       default:
         cardinality = 1;
+        rotatyvariablething = 4;
         funcA = function (i) {
           return i;
         };
@@ -167,7 +174,7 @@ const SimpleTiledModel = function SimpleTiledModel (data, subsetName, width, hei
         ];
       }));
 
-      for (let t = 1; t < cardinality; t++) {
+      for (let t = 1; t < rotatyvariablething; t++) {
         this.tiles.push(t < 4 ? rotate(this.tiles[this.T + t - 1]) : reflect(this.tiles[this.T + t - 4]));
       }
     }

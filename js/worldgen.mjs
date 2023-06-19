@@ -41,35 +41,6 @@ function addBitmapDataToStructure (structure, callback) {
   });
 }
 
-function expandRotations (structure) {
-  let newNeighbors = [];
-  for(let i in structure.neighbors){
-    if(structure.neighbors[i].anyrot){
-      let n = structure.neighbors[i];
-      newNeighbors.push(n);
-      newNeighbors.push({left: n.left + " 1", right: n.right});
-      newNeighbors.push({left: n.left + " 2", right: n.right});
-      newNeighbors.push({left: n.left + " 3", right: n.right});
-      newNeighbors.push({left: n.left, right: n.right + " 1"});
-      newNeighbors.push({left: n.left, right: n.right + " 2"});
-      newNeighbors.push({left: n.left, right: n.right + " 3"});
-      newNeighbors.push({left: n.left + " 1", right: n.right + " 1"});
-      newNeighbors.push({left: n.left + " 1", right: n.right + " 2"});
-      newNeighbors.push({left: n.left + " 1", right: n.right + " 3"});
-      newNeighbors.push({left: n.left + " 2", right: n.right + " 1"});
-      newNeighbors.push({left: n.left + " 2", right: n.right + " 2"});
-      newNeighbors.push({left: n.left + " 2", right: n.right + " 3"});
-      newNeighbors.push({left: n.left + " 3", right: n.right + " 1"});
-      newNeighbors.push({left: n.left + " 3", right: n.right + " 2"});
-      newNeighbors.push({left: n.left + " 3", right: n.right + " 3"});
-    } else {
-      newNeighbors.push(structure.neighbors[i]);
-    }
-  }
-  structure.neighbors = newNeighbors;
-  return structure;
-}
-
 export default class Level {
 	constructor(r){
     //let d = expandRotations(definition);

@@ -1,5 +1,37 @@
 import Model from './model.js'
 
+const tile = function tile (f) {
+  const result = new Array(tilesize * tilesize);
+
+  for (let y = 0; y < tilesize; y++) {
+    for (let x = 0; x < tilesize; x++) {
+      result[x + y * tilesize] = f(x, y);
+    }
+  }
+
+  return result;
+};
+
+const rotate = function rotate (array) {
+  return tile(function (x, y) {
+    return array[tilesize - 1 - y + x * tilesize];
+  });
+};
+
+function randomRotate(array) {
+  let a = array.slice();
+  for(let i = 0; i<Math.floor(Math.random()*4)+1; i++){
+    a = rotate(a);
+  }
+  return a;
+}
+
+const reflect = function reflect(array) {
+  return tile(function (x, y) {
+    return array[tilesize - 1 - x + y * tilesize];
+  });
+};
+
 /**
  *
  * @param {object} data Tiles, subset and constraints definitions
@@ -26,30 +58,6 @@ const SimpleTiledModel = function SimpleTiledModel (data, subsetName, width, hei
   if (subsetName && data.subsets && !!data.subsets[subsetName]) {
     subset = data.subsets[subsetName];
   }
-
-  const tile = function tile (f) {
-    const result = new Array(tilesize * tilesize);
-
-    for (let y = 0; y < tilesize; y++) {
-      for (let x = 0; x < tilesize; x++) {
-        result[x + y * tilesize] = f(x, y);
-      }
-    }
-
-    return result;
-  };
-
-  const rotate = function rotate (array) {
-    return tile(function (x, y) {
-      return array[tilesize - 1 - y + x * tilesize];
-    });
-  };
-
-  const reflect = function reflect(array) {
-    return tile(function (x, y) {
-      return array[tilesize - 1 - x + y * tilesize];
-    });
-  };
 
   this.tiles = [];
   const tempStationary = [];
@@ -115,7 +123,7 @@ const SimpleTiledModel = function SimpleTiledModel (data, subsetName, width, hei
         };
         break;
       default:
-        cardinality = 4;
+        cardinality = 1;
         funcA = function (i) {
           return i;
         };
@@ -296,7 +304,7 @@ SimpleTiledModel.prototype.graphics = function (array, defaultColor) {
 SimpleTiledModel.prototype.graphicsComplete = function (array) {
   for (let x = 0; x < this.FMX; x++) {
     for (let y = 0; y < this.FMY; y++) {
-      const tile = this.tiles[this.observed[x + y * this.FMX]];
+      const tile = randomRotate(this.tiles[this.observed[x + y * this.FMX]]);
 
       for (let yt = 0; yt < this.tilesize; yt++) {
         for (let xt = 0; xt < this.tilesize; xt++) {

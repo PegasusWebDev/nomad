@@ -14,7 +14,7 @@ const tile = function tile (f) {
 
 const rotate = function rotate (array) {
   return tile(function (x, y) {
-    return array[tilesize - 1 - y + x * tilesize];
+    return array[this.tilesize - 1 - y + x * this.tilesize];
   });
 };
 
@@ -28,7 +28,7 @@ function randomRotate(array) {
 
 const reflect = function reflect(array) {
   return tile(function (x, y) {
-    return array[tilesize - 1 - x + y * tilesize];
+    return array[this.tilesize - 1 - x + y * this.tilesize];
   });
 };
 

@@ -72,9 +72,9 @@ function expandRotations (structure) {
 
 export default class Level {
 	constructor(r){
-    definition = expandRotations(definition);
-    console.log(definition);
-		addBitmapDataToStructure(definition, function (err, definition) {
+    let d = expandRotations(definition);
+    console.log(d);
+		addBitmapDataToStructure(d, function (err, d) {
 			if (err) {
 				throw err;
 			}
@@ -83,7 +83,7 @@ export default class Level {
 			const destHeight = 16;
 			
 			try {
-				const model = new WFC.SimpleTiledModel(definition, null, destWidth, destHeight, false);
+				const model = new WFC.SimpleTiledModel(d, null, destWidth, destHeight, false);
 				const finished = model.generate();
 			
 				if (finished) {

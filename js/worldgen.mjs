@@ -65,9 +65,9 @@ function expandRotations (structure) {
     } else {
       newNeighbors.push(structure.neighbors[i]);
     }
-    structure.neighbors = newNeighbors;
-    return structure;
   }
+  structure.neighbors = newNeighbors;
+  return structure;
 }
 
 export default class Level {

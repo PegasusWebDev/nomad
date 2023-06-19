@@ -1,11 +1,11 @@
 import Model from './model.js'
 
 const tile = function tile (f) {
-  const result = new Array(tilesize * tilesize);
+  const result = new Array(this.tilesize * this.tilesize);
 
-  for (let y = 0; y < tilesize; y++) {
-    for (let x = 0; x < tilesize; x++) {
-      result[x + y * tilesize] = f(x, y);
+  for (let y = 0; y < this.tilesize; y++) {
+    for (let x = 0; x < this.tilesize; x++) {
+      result[x + y * this.tilesize] = f(x, y);
     }
   }
 

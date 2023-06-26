@@ -8,10 +8,13 @@ export default {
         { name:"rocks", symmetry:"X", randomRotate:true },
         { name:"sand", symmetry:"X", randomRotate:true },
         { name:"scarce_grass", symmetry:"X", randomRotate:true },
-        { name:"water", symmetry:"X" }
+        { name:"water", symmetry:"X" },
+        { name:"water_transition", symmetry:"X"}
     ],
     neighbors: [
-        { left:"deep_water", right:"water" },
+        { left:"deep_water", right:"water_transition" },
+        { left:"water_transition", right:"water_transition" },
+        { left:"water_transition", right:"water" },
         { left:"water", right:"sand" },
         { left: "sand", right: "scarce_grass"},
         { left: "scarce_grass", right: "grass"},

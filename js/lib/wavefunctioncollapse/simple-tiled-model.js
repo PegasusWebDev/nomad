@@ -177,7 +177,7 @@ const SimpleTiledModel = function SimpleTiledModel (data, subsetName, width, hei
       this.tiles[this.tiles.length-1].randomRotate = currentTile.randomRotate;
 
       for (let t = 1; t < cardinality; t++) {
-        this.tiles.push(t < 4 ? rotate(this.tiles[this.T + t - 1]) : reflect(this.tiles[this.T + t - 4]));
+        this.tiles.push(t < 4 ? rotate(this.tiles[this.T + t - 1]) : reflect(this.tiles[this.T + t - 4], this));
         this.tiles[this.tiles.length-1].randomRotate = currentTile.randomRotate;
       }
     }
